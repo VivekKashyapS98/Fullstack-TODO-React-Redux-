@@ -10,10 +10,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.all('/', (req, res, next) => {
-    res.send("<h1>HI</h1>");
+    res.sendFile(__dirname+"/public/index.html");
     next();
 });
 
+app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
