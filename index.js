@@ -9,14 +9,14 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
-app.use(bodyParser.json());
-app.use(cors());
-
 app.all('/', (req, res, next) => {
     res.send("<h1>HI</h1>");
     next();
 });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 app.use("/api/todos", route);
 
 mongoose.connect(keys.key, { useNewUrlParser: true, useUnifiedTopology: true }).then(function(){console.log("Connected to MongoDB Atlas...")})
